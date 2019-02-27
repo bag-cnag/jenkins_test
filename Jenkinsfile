@@ -11,6 +11,7 @@ pipeline {
 
         stage('Example stage 2') {
     steps {
+        sh 'printenv'
     wrap([$class: 'BuildUser']) {
       echo "${BUILD_USER}"
       echo "${BUILD_USER_ID}"
