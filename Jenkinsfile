@@ -14,7 +14,7 @@ pipeline {
         sh 'printenv'
     wrap([$class: 'BuildUser']) {
         
-        if(env.BUILD_USER){        
+        if (env.BUILD_USER) {        
       echo "${BUILD_USER}"
         }
     }
