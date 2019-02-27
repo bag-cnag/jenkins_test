@@ -12,12 +12,16 @@ pipeline {
         stage('Example stage 2') {
     steps {
         sh 'printenv'
-    wrap([$class: 'BuildUser']) {
+        def safeBuildUser = "ujenkins"
+            wrap([$class: 'BuildUser']) {
+            try {
+                safeBuildUser = BUILD_USER
+            } catch (e) {
+                    echo "User not in scope, probably triggered from another job"
+                    }
+            }
+        echo "Builduser is: ${safeBuildUser}"
         
-        if (env.BUILD_USER) {        
-      echo "${BUILD_USER}"
-        }
-    }
         }
     }
 }
