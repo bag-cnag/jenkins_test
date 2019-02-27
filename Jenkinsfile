@@ -13,9 +13,10 @@ pipeline {
     steps {
         sh 'printenv'
     wrap([$class: 'BuildUser']) {
+        
+        if(BUILD_USER){        
       echo "${BUILD_USER}"
-      echo "${BUILD_USER_ID}"
-      echo "${BUILD_USER_EMAIL}"
+        }
     }
         }
     }
